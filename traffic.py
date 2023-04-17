@@ -38,9 +38,12 @@ class Auth():
 
 
 if __name__ == '__main__':
-    a = Auth(app_id, app_key)
-    print(a.get_auth_header())
-    response = request('get', 'https://ptx.transportdata.tw/MOTC/v3/Rail/TRA/Station?$format=JSON', headers= a.get_auth_header())
+    # a = Auth(app_id, app_key)
+    # print(a.get_auth_header())
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36'
+    }
+    response = request('get', 'https://tdx.transportdata.tw/api/basic/v3/Rail/TRA/Station?$format=JSON', headers= headers)
     data = json.loads(response.text)
     # 示範 pprint 好處( 結構化 )
     # pprint(data)
